@@ -16,25 +16,6 @@ class Register:
 		print("Coins added: ", self.coins_added)
 		print("Total coins: ", self.coins_added + self.coins,"\n")
 	
-def quotient(a,b):
-	a = abs(a)
-	b = abs(b)
-	
-	if (a == 0):
-		return 0
-	
-	if (b == 0):
-		return -1
-	
-	if (a < b):
-		return 0
-	
-	q = 1
-	r = a - b*q
-	while (r >= b):
-		q = q + 1
-		r = a - b*q
-	return abs(q)
 
 def remainder(a,b):
 	a = abs(a)
@@ -54,7 +35,10 @@ def remainder(a,b):
 	while (r >= b):
 		q = q + 1
 		r = a - b*q
-	return abs(r)
+		
+	r = abs(r)
+	q = abs(q)
+	return r, q
 
 
 def solve_quiz():
@@ -67,26 +51,26 @@ def solve_quiz():
 		current_sailor_list = []
 		left_coins = n
 		r = remainder(left_coins,3)
-		if ( r ==  1):
-			sailor_coins = quotient(left_coins,3)
+		if ( r[0] ==  1):
+			sailor_coins = r[1]
 			current_sailor_list.append(Register("Marinero",left_coins,sailor_count,sailor_coins))
 			left_coins = left_coins - sailor_coins - 1
 			sailor_count = sailor_count + 1
 			r = remainder(left_coins,3)
-			if (r ==  1):
-				sailor_coins = quotient(left_coins,3)
+			if (r[0] ==  1):
+				sailor_coins = r[1]
 				current_sailor_list.append(Register("Marinero",left_coins,sailor_count,sailor_coins))
 				left_coins = left_coins - sailor_coins - 1
 				sailor_count = sailor_count + 1
 				r = remainder(left_coins,3)
-				if (r ==  1):
-					sailor_coins = quotient(left_coins,3)
+				if (r[0] ==  1):
+					sailor_coins = r[1]
 					current_sailor_list.append(Register("Marinero",left_coins,sailor_count,sailor_coins))
 					left_coins = left_coins - sailor_coins - 1
 					sailor_count = sailor_count + 1
 					r = remainder(left_coins,3)
-					if (r ==  1):
-						coins_to_be_distribuited = quotient(left_coins,3)
+					if (r[0] ==  1):
+						coins_to_be_distribuited = r[1]
 						sailor_coins = 1
 						current_sailor_list.append(Register("Almojarife",left_coins,sailor_count,sailor_coins))
 						for count in range(len(current_sailor_list) - 1):
